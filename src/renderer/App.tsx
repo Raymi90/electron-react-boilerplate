@@ -1,50 +1,45 @@
-import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
-import icon from '../../assets/icon.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+import { Tabs } from 'antd';
+import type { TabsProps } from 'antd';
+import Renovacion from './components/Renovacion';
+import Dau from './components/Dau';
 
-function Hello() {
-  return (
-    <div>
-      <div className="Hello">
-        <img width="200" alt="icon" src={icon} />
-      </div>
-      <h1>electron-react-boilerplate</h1>
-      <div className="Hello">
-        <a
-          href="https://electron-react-boilerplate.js.org/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <button type="button">
-            <span role="img" aria-label="books">
-              📚
-            </span>
-            Read our docs
-          </button>
-        </a>
-        <a
-          href="https://github.com/sponsors/electron-react-boilerplate"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <button type="button">
-            <span role="img" aria-label="folded hands">
-              🙏
-            </span>
-            Donate
-          </button>
-        </a>
-      </div>
-    </div>
-  );
-}
+const onChange = (key: string) => {
+  console.log(key);
+};
 
-export default function App() {
+const App: React.FC = () => {
+  const [chromePathServer, setChromePathServer] = useState<string>('');
+
+  const items: TabsProps['items'] = [
+    {
+      key: '1',
+      label: 'Renovación',
+      children: <Renovacion chromePathServer={chromePathServer} />,
+    },
+    {
+      key: '2',
+      label: 'Dau',
+      children: <Dau chromePathServer={chromePathServer} />,
+    },
+  ];
+
+  const handleChromePath = (data: any) => {
+    setChromePathServer(data);
+  };
+
+  useEffect(() => {
+    window.electron.ipcRenderer.on('chrome-path-from-server', handleChromePath);
+  }, []);
+
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Hello />} />
-      </Routes>
-    </Router>
+    <Tabs
+      defaultActiveKey="1"
+      centered={true}
+      items={items}
+      onChange={onChange}
+    />
   );
-}
+};
+
+export default App;

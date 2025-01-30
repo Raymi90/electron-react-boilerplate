@@ -1,5 +1,5 @@
 {
-  "name": "electron-react-boilerplate",
+  "name": "ip-scrapper",
   "description": "A foundation for scalable desktop apps",
   "keywords": [
     "electron",
@@ -102,12 +102,22 @@
   },
   "dependencies": {
     "@electron/notarize": "^2.3.2",
+    "airtable": "^0.12.2",
+    "antd": "^5.23.2",
+    "dayjs": "^1.11.13",
     "electron-debug": "^3.2.0",
     "electron-log": "^4.4.8",
+    "electron-store": "^8.2.0",
     "electron-updater": "^6.1.4",
+    "firebase": "^11.2.0",
+    "firebase-admin": "^13.0.2",
+    "puppeteer": "^24.1.1",
+    "puppeteer-core": "^24.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.16.0"
+    "react-router-dom": "^6.16.0",
+    "string-similarity": "^4.0.4",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@electron/rebuild": "^3.3.0",
@@ -175,7 +185,7 @@
     "webpack-merge": "^5.9.0"
   },
   "build": {
-    "productName": "ElectronReact",
+    "productName": "IP Scrapper",
     "appId": "org.erb.ElectronReact",
     "asar": true,
     "asarUnpack": "**\\*.{node,dll}",
@@ -185,6 +195,7 @@
       "package.json"
     ],
     "mac": {
+      "icon": "assets/icons/logo_mac.png",
       "sign": ".erb/scripts/notarize.js",
       "notarize": false,
       "target": {
@@ -215,6 +226,7 @@
       ]
     },
     "win": {
+      "icon": "assets/icons/logo_mac.ico",
       "target": [
         "nsis"
       ]
