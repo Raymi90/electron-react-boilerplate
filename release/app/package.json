@@ -1,12 +1,12 @@
 {
-  "name": "electron-react-boilerplate",
-  "version": "4.6.0",
-  "description": "A foundation for scalable desktop apps",
+  "name": "ipscrapper",
+  "version": "1.2.1",
+  "description": "Trademark search data scrapper",
   "license": "MIT",
   "author": {
-    "name": "Electron React Boilerplate Maintainers",
-    "email": "electronreactboilerplate@gmail.com",
-    "url": "https://github.com/electron-react-boilerplate"
+    "name": "Raymi Valdes",
+    "email": "raymivaldes@gmail.com",
+    "url": "https://github.com/pupeteer-electron"
   },
   "main": "./dist/main/main.js",
   "scripts": {

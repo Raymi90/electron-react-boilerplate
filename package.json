@@ -1,6 +1,6 @@
 {
   "name": "ip-scrapper",
-  "description": "A foundation for scalable desktop apps",
+  "description": "Trademark search data scrapper",
   "keywords": [
     "electron",
     "boilerplate",
@@ -12,13 +12,13 @@
     "hot",
     "reload"
   ],
-  "homepage": "https://github.com/electron-react-boilerplate/electron-react-boilerplate#readme",
+  "homepage": "https://github.com/Raymi90/pupeteer-electron#readme",
   "bugs": {
-    "url": "https://github.com/electron-react-boilerplate/electron-react-boilerplate/issues"
+    "url": "https://github.com/Raymi90/pupeteer-electron/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/electron-react-boilerplate/electron-react-boilerplate.git"
+    "url": "git+https://github.com/Raymi90/pupeteer-electron.git"
   },
   "license": "MIT",
   "author": {
@@ -28,9 +28,9 @@
   },
   "contributors": [
     {
-      "name": "Amila Welihinda",
-      "email": "amilajack@gmail.com",
-      "url": "https://github.com/amilajack"
+      "name": "Raymi Valdes",
+      "email": "r.aldecoa@aldecoaelias.com",
+      "url": "https://github.com/Raymi90"
     }
   ],
   "main": "./.erb/dll/main.bundle.dev.js",
@@ -42,7 +42,7 @@
     "postinstall": "ts-node .erb/scripts/check-native-dep.js && electron-builder install-app-deps && npm run build:dll",
     "lint": "cross-env NODE_ENV=development eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "cross-env NODE_ENV=development eslint . --ext .js,.jsx,.ts,.tsx --fix",
-    "package": "ts-node ./.erb/scripts/clean.js dist && npm run build && electron-builder build --publish never && npm run build:dll",
+    "package": "ts-node ./.erb/scripts/clean.js dist && npm run build && electron-builder build --win --publish always && npm run build:dll",
     "rebuild": "electron-rebuild --parallel --types prod,dev,optional --module-dir release/app",
     "prestart": "cross-env NODE_ENV=development TS_NODE_TRANSPILE_ONLY=true webpack --config ./.erb/configs/webpack.config.main.dev.ts",
     "start": "ts-node ./.erb/scripts/check-port-in-use.js && npm run prestart && npm run start:renderer",
@@ -186,7 +186,7 @@
   },
   "build": {
     "productName": "IP Scrapper",
-    "appId": "org.erb.ElectronReact",
+    "appId": "org.erb.IpScrapper",
     "asar": true,
     "asarUnpack": "**\\*.{node,dll}",
     "files": [
@@ -247,12 +247,9 @@
     ],
     "publish": {
       "provider": "github",
-      "owner": "electron-react-boilerplate",
-      "repo": "electron-react-boilerplate"
+      "owner": "Raymi90",
+      "repo": "pupeteer-electron"
     }
-  },
-  "collective": {
-    "url": "https://opencollective.com/electron-react-boilerplate-594"
   },
   "devEngines": {
     "runtime": {
