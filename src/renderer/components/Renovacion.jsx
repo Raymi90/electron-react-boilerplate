@@ -413,203 +413,201 @@ export default function Renovacion({ chromePathServer }) {
   };
 
   return (
-    <ConfigProvider>
+    <div style={{ width: '100%', height: '100vh' }}>
       {contextHolder}
-      <div style={{ width: '100%', height: '100vh' }}>
-        {!hide ? (
-          <Row justify={'center'} style={{ marginBottom: '20px' }}>
-            <Col span={12}>
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  gap: '10px',
-                  alignItems: 'center',
-                }}
-              >
-                <Button onClick={() => ref.current?.click()}>
-                  Selecciona ejecutable Chronme
-                </Button>
-                <span>{file}</span>
-              </div>
-              <input
-                type="file"
-                ref={ref}
-                onChange={handleFileChange}
-                style={{ display: 'none' }}
-              />
-            </Col>
-          </Row>
-        ) : (
-          <Button onClick={() => setHide((prev) => !prev)}>
-            Cambiar ejecutable
-          </Button>
-        )}
-        <Row justify={'center'}>
+      {!hide ? (
+        <Row justify={'center'} style={{ marginBottom: '20px' }}>
           <Col span={12}>
-            <DatePicker
-              placeholder="Desde"
-              format={dateFormat}
-              onChange={(date, dateString) =>
-                setFields({ ...fields, desde: dateString })
-              }
-              style={{ marginRight: '10px' }}
-            />
-            <DatePicker
-              placeholder="Hasta"
-              format={dateFormat}
-              onChange={(date, dateString) =>
-                setFields({ ...fields, hasta: dateString })
-              }
-              style={{ marginRight: '10px' }}
-            />
-            <Button
-              disabled={loading || !fields.desde || !fields.hasta}
-              style={{
-                margin: '20px',
-              }}
-              type="primary"
-              onClick={handleFetch}
-            >
-              Inciar búsqueda y Filtrado
-            </Button>
-
-            <Button
-              disabled={loading}
-              style={{ margin: '10px' }}
-              type="primary"
-              onClick={() => exportXSLX(fetchedData, 'data.xlsx')}
-            >
-              Exportar a Excel
-            </Button>
-          </Col>
-        </Row>
-
-        <Row justify={'center'}>
-          <Col span={3}>
             <div
               style={{
                 display: 'flex',
-                flexDirection: 'column',
+                flexDirection: 'row',
                 gap: '10px',
-                marginTop: '20px',
-                justifyContent: 'center',
                 alignItems: 'center',
               }}
             >
-              <Steps
-                direction="vertical"
-                size="small"
-                current={current}
-                items={items}
-              />
+              <Button onClick={() => ref.current?.click()}>
+                Selecciona ejecutable Chronme
+              </Button>
+              <span>{file}</span>
             </div>
-          </Col>
-          <Col span={19}>
-            {current === 0 && (
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  justifyContent: 'left',
-                  gap: '10px',
-                }}
-              >
-                <h3>Total de registros: {total}</h3>
-                <div
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '10px',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    width: '100%',
-                  }}
-                >
-                  <Progress percent={porcentaje} status="active" />
-                  {`${count}/${total}`}
-                </div>
-              </div>
-            )}
-
-            {current === 1 && (
-              <div>
-                <h3>Filtrando registros...</h3>
-                <div
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '10px',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    width: '100%',
-                  }}
-                >
-                  <Progress percent={porcentaje} status="active" />
-                  {`${count}/${total}`}
-                </div>
-              </div>
-            )}
-
-            {current === 2 && (
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  justifyContent: 'flex-start',
-                  gap: '10px',
-                }}
-              >
-                <h3>Total de clientes Encontrados: {clientCount}</h3>
-                <div
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '10px',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    width: '100%',
-                  }}
-                >
-                  <Progress percent={porcentaje} status="active" />
-                  {`${count}/${total}`}
-                </div>
-              </div>
-            )}
-
-            {current === 3 && (
-              <div>
-                <h3>Filtrando agentes...</h3>
-                <div
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '10px',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    width: '100%',
-                  }}
-                >
-                  <Progress percent={porcentaje} status="active" />
-                  {`${count}/${total}`}
-                </div>
-              </div>
-            )}
-
-            <Table
-              loading={{
-                spinning: loading,
-                indicator: <Spin />,
-              }}
-              dataSource={fetchedData}
-              columns={columns}
-              rowKey={'Número de registro'}
+            <input
+              type="file"
+              ref={ref}
+              onChange={handleFileChange}
+              style={{ display: 'none' }}
             />
           </Col>
         </Row>
-      </div>
-    </ConfigProvider>
+      ) : (
+        <Button onClick={() => setHide((prev) => !prev)}>
+          Cambiar ejecutable
+        </Button>
+      )}
+      <Row justify={'center'}>
+        <Col span={12}>
+          <DatePicker
+            placeholder="Desde"
+            format={dateFormat}
+            onChange={(date, dateString) =>
+              setFields({ ...fields, desde: dateString })
+            }
+            style={{ marginRight: '10px' }}
+          />
+          <DatePicker
+            placeholder="Hasta"
+            format={dateFormat}
+            onChange={(date, dateString) =>
+              setFields({ ...fields, hasta: dateString })
+            }
+            style={{ marginRight: '10px' }}
+          />
+          <Button
+            disabled={loading || !fields.desde || !fields.hasta}
+            style={{
+              margin: '20px',
+            }}
+            type="primary"
+            onClick={handleFetch}
+          >
+            Inciar búsqueda y Filtrado
+          </Button>
+
+          <Button
+            disabled={loading}
+            style={{ margin: '10px' }}
+            type="primary"
+            onClick={() => exportXSLX(fetchedData, 'data.xlsx')}
+          >
+            Exportar a Excel
+          </Button>
+        </Col>
+      </Row>
+
+      <Row justify={'center'}>
+        <Col span={3}>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '10px',
+              marginTop: '20px',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <Steps
+              direction="vertical"
+              size="small"
+              current={current}
+              items={items}
+            />
+          </div>
+        </Col>
+        <Col span={19}>
+          {current === 0 && (
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'left',
+                gap: '10px',
+              }}
+            >
+              <h3>Total de registros: {total}</h3>
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '10px',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  width: '100%',
+                }}
+              >
+                <Progress percent={porcentaje} status="active" />
+                {`${count}/${total}`}
+              </div>
+            </div>
+          )}
+
+          {current === 1 && (
+            <div>
+              <h3>Filtrando registros...</h3>
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '10px',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  width: '100%',
+                }}
+              >
+                <Progress percent={porcentaje} status="active" />
+                {`${count}/${total}`}
+              </div>
+            </div>
+          )}
+
+          {current === 2 && (
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'flex-start',
+                gap: '10px',
+              }}
+            >
+              <h3>Total de clientes Encontrados: {clientCount}</h3>
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '10px',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  width: '100%',
+                }}
+              >
+                <Progress percent={porcentaje} status="active" />
+                {`${count}/${total}`}
+              </div>
+            </div>
+          )}
+
+          {current === 3 && (
+            <div>
+              <h3>Filtrando agentes...</h3>
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '10px',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  width: '100%',
+                }}
+              >
+                <Progress percent={porcentaje} status="active" />
+                {`${count}/${total}`}
+              </div>
+            </div>
+          )}
+
+          <Table
+            loading={{
+              spinning: loading,
+              indicator: <Spin />,
+            }}
+            dataSource={fetchedData}
+            columns={columns}
+            rowKey={'Número de registro'}
+          />
+        </Col>
+      </Row>
+    </div>
   );
 }

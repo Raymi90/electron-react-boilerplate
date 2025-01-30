@@ -227,6 +227,9 @@
     },
     "win": {
       "icon": "assets/icons/logo_mac.ico",
+      "publish": [
+        "github"
+      ],
       "target": [
         "nsis"
       ]
@@ -248,7 +251,8 @@
     "publish": {
       "provider": "github",
       "owner": "Raymi90",
-      "repo": "pupeteer-electron"
+      "repo": "pupeteer-electron",
+      "releaseType": "release"
     }
   },
   "devEngines": {

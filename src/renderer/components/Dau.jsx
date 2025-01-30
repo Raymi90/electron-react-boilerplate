@@ -432,7 +432,7 @@ export default function Dau({ chromePathServer }) {
   };
 
   return (
-    <ConfigProvider>
+    <div>
       {contextHolder}
       <div style={{ width: '100%', height: '100vh' }}>
         {!hide ? (
@@ -640,6 +640,6 @@ export default function Dau({ chromePathServer }) {
           </Col>
         </Row>
       </div>
-    </ConfigProvider>
+    </div>
   );
 }

@@ -25,6 +25,11 @@ const electronHandler = {
       ipcRenderer.once(channel, (_event, ...args) => func(...args));
     },
   },
+  darkMode: {
+    invoke(channel: Channels, ...args: unknown[]) {
+      return ipcRenderer.invoke(channel, ...args);
+    },
+  },
 };
 
 contextBridge.exposeInMainWorld('electron', electronHandler);

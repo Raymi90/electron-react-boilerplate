@@ -9,7 +9,7 @@
  * `./src/main.js` using webpack. This gives us some performance wins.
  */
 import path from 'path';
-import { app, BrowserWindow, shell, ipcMain } from 'electron';
+import { app, BrowserWindow, shell, ipcMain, nativeTheme } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
@@ -133,6 +133,38 @@ const createWindow = async () => {
  * Add event listeners...
  *
  */
+
+ipcMain.handle('dark-mode:toggle', () => {
+  if (nativeTheme.shouldUseDarkColors) {
+    nativeTheme.themeSource = 'light';
+  } else {
+    nativeTheme.themeSource = 'dark';
+  }
+  return nativeTheme.shouldUseDarkColors;
+});
+
+ipcMain.handle('dark-mode:system', () => {
+  nativeTheme.themeSource = 'system';
+});
+
+ipcMain.handle('dark-mode:change', (event, data) => {
+  switch (data) {
+    case 'dark':
+      nativeTheme.themeSource = 'dark';
+      break;
+    case 'light':
+      nativeTheme.themeSource = 'light';
+      break;
+    default:
+      nativeTheme.themeSource = 'system';
+      break;
+  }
+});
+
+ipcMain.handle('dark-mode:detect', () => {
+  console.log('dark mode? ', nativeTheme.shouldUseDarkColors);
+  return nativeTheme.shouldUseDarkColors;
+});
 
 ipcMain.on('chrome-path', (event, arg) => {
   store.set('executablePath', arg);
