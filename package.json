@@ -253,7 +253,7 @@
       "owner": "Raymi90",
       "repo": "pupeteer-electron",
       "releaseType": "release",
-      "token": "$GH_TOKEN"
+      "token": "[GH_TOKEN]"
     }
   },
   "devEngines": {
